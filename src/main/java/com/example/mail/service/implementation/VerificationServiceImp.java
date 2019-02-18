@@ -5,10 +5,16 @@ import com.example.mail.entity.VerificationToken;
 import com.example.mail.repository.VerificationRepository;
 import com.example.mail.service.VerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 /**
  * created by  eric.nyandwi on Feb,18/02/2019
  */
+
+@Service
+@Transactional
 public class VerificationServiceImp implements VerificationService {
 
     private final VerificationRepository verificationRepository;

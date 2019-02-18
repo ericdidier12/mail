@@ -1,5 +1,6 @@
 package com.example.mail.service.implementation;
 
+import com.example.mail.dto.UserDTO;
 import com.example.mail.entity.Role;
 import com.example.mail.entity.Users;
 import com.example.mail.entity.VerificationToken;
@@ -37,7 +38,7 @@ public class UserServiceImp implements UsersService {
 
 
     @Override
-    public Users registerUser(Users users) {
+    public Users registerUser(UserDTO users) {
         if(users == null){
             throw new IllegalArgumentException(" users ne peut pas être null ");
         }
@@ -45,13 +46,14 @@ public class UserServiceImp implements UsersService {
         Users user = new Users();
         user.setFirstName(users.getFirstName());
         user.setLastName(users.getLastName());
-        user.setUsername(users.getUsername());
+        user.setUsername(users.getUserName());
         String hashedPassword = passwordEncoder.encode(users.getPassword());
         user.setPassword(hashedPassword);
         user.setEnabled(users.isEnabled());
         user.setEmail(users.getEmail());
         user.setRoles(Arrays.asList(this.createOrGetAuthority("ROLE_CANDIDATE")));
-        return  userRepository.save(users);
+
+        return  userRepository.save(user);
     }
 
 
@@ -65,6 +67,8 @@ public class UserServiceImp implements UsersService {
         }
         return found;
     }
+
+
 
     @Override
     public Users findByUserName(String username) {
