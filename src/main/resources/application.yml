@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    context-path:
+spring:
+  datasource:
+    #    url: jdbc:postgresql://localhost:5432/QuizzTionMe?user=postgres&currentSchema=quizztionme
+    url: jdbc:postgresql://localhost:5432/tokentest
+    password: BuSI
+    username: postgres
+  #---------------------------------#
+  # Connection to a remote database #
+  #------------------------------- -#
+  #   url: jdbc:postgresql://40.89.163.174:5432/QuizzTionMe?user=developer&currentSchema=quizztionme
+  #   password: developer
+
+
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+      database-platform: org.hibernate.dialect.PostgreSQL9Dialect
